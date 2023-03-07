@@ -1,11 +1,21 @@
-import * as S from './styles';
-
 import { Link } from "react-router-dom";
+
+import * as S from './styles';
+import logoPhoenix from '../../assets/images/logo-phoenix.png';
 
 function Header() {
   return (
     <S.Container>
-      <nav>
+      <S.DivLogo>
+        <img src={logoPhoenix} alt='Logo' />
+      </S.DivLogo>
+      <S.Nav>
+        <Link to="/">Home</Link>
+        <Link to="/register/teams">Register Teams</Link>
+        <Link to="/register/players">Register Players</Link>
+      </S.Nav>
+
+      {/* <nav>
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -17,7 +27,7 @@ function Header() {
             <Link to="/register/players">Register Players</Link>
           </li>
         </ul>
-      </nav>
+      </nav> */}
     </S.Container>
   );
 }
