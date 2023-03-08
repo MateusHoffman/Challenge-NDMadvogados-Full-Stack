@@ -6,6 +6,12 @@ const getAllTeams = async () => {
   return rows
 };
 
+const getAllTeamsWithPlayers = async () => {
+  const query = `SELECT jogador.id, jogador.nome, jogador.idade, time.nome AS nome_do_time, time.id AS time_id FROM jogador INNER JOIN time ON jogador.time_id = time.id;`;
+  const { rows } = await connection.query(query);
+  return rows
+};
+
 const registerTeam = async ({name}) => {
   const query1 = `
   SELECT nome
@@ -30,4 +36,5 @@ module.exports = {
   getAllTeams,
   registerTeam,
   deleteTeam,
+  getAllTeamsWithPlayers,
 };

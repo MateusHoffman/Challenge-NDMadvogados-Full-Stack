@@ -9,6 +9,15 @@ const getAllTeams = async (req, res, next) => {
 	}
 }
 
+const getAllTeamsWithPlayers = async (req, res, next) => {
+	try {
+		const response = await teamsService.getAllTeamsWithPlayers()
+		res.status(200).json(response)
+	} catch (error) {
+		next(error)
+	}
+}
+
 const registerTeam = async (req, res, next) => {
 	try {
 		const response = await teamsService.registerTeam(req.body)
@@ -31,4 +40,5 @@ module.exports = {
   getAllTeams,
   registerTeam,
   deleteTeam,
+  getAllTeamsWithPlayers,
 };

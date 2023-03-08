@@ -5,6 +5,11 @@ const getAllTeams = () => {
 	return response
 }
 
+const getAllTeamsWithPlayers = () => {
+	const response = teamsModel.getAllTeamsWithPlayers()
+	return response
+}
+
 const registerTeam = (body) => {
 	const response = teamsModel.registerTeam(body)
 	return response
@@ -19,4 +24,5 @@ module.exports = {
 	getAllTeams,
 	registerTeam,
 	deleteTeam,
+	getAllTeamsWithPlayers,
 }
