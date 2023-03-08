@@ -1,4 +1,5 @@
 const connection = require('./connection');
+const { getAllTeamsWithPlayers } = require('./teams.model');
 
 const getAllPlayers = async () => {
   const query = `select * from jogador`;
@@ -36,7 +37,8 @@ const editPlayer = async ({id}, {name, age, team}) => {
   SET nome = '${name}', idade = ${age}, time_id = ${team}
   WHERE id = ${id};`;
   await connection.query(query1);
-  return 'Successfully edited'
+  return getAllTeamsWithPlayers()
+  // return 'Successfully edited'
 };
 
 module.exports = {
