@@ -18,7 +18,7 @@ function Home() {
           teamPlayers.push({ name: p.nome, id: p.id })
         }
       })
-      arrOrganizedTeams.push({team: t.nome, teamPlayers})
+      arrOrganizedTeams.push({team: {name: t.nome, id: t.id}, teamPlayers})
     })
     setCompleteTeams(arrOrganizedTeams)
     return arrOrganizedTeams
