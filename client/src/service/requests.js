@@ -30,6 +30,9 @@ const api = {
     async deletePlayer({id}) {
       await axios.delete(`http://localhost:3002/api/players/${id}`);
     },
+    async deleteTeam({id}) {
+      await axios.delete(`http://localhost:3002/api/teams/${id}`);
+    },
   },
 };
 
