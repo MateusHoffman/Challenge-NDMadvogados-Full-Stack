@@ -20,7 +20,14 @@ const registerTeam = async ({name}) => {
   return 'Team added successfully'
 };
 
+const deleteTeam = async ({id}) => {
+  const query1 = `DELETE FROM time WHERE id = ${id};`;
+  await connection.query(query1);
+  return 'Successfully deleted'
+};
+
 module.exports = {
   getAllTeams,
   registerTeam,
+  deleteTeam,
 };

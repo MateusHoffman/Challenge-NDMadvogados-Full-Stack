@@ -10,7 +10,13 @@ const registerTeam = (body) => {
 	return response
 }
 
+const deleteTeam = (body) => {
+	const response = teamsModel.deleteTeam(body)
+	return response
+}
+
 module.exports = {
 	getAllTeams,
 	registerTeam,
+	deleteTeam,
 }

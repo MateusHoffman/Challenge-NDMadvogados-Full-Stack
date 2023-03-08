@@ -12,6 +12,15 @@ const getAllTeams = async (req, res, next) => {
 const registerTeam = async (req, res, next) => {
 	try {
 		const response = await teamsService.registerTeam(req.body)
+		res.status(201).json(response)
+	} catch (error) {
+		next(error)
+	}
+}
+
+const deleteTeam = async (req, res, next) => {
+	try {
+		const response = await teamsService.deleteTeam(req.body)
 		res.status(200).json(response)
 	} catch (error) {
 		next(error)
@@ -21,4 +30,5 @@ const registerTeam = async (req, res, next) => {
 module.exports = {
   getAllTeams,
   registerTeam,
+  deleteTeam,
 };
