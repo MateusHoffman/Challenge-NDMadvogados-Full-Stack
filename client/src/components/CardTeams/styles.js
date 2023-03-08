@@ -8,7 +8,11 @@ export const Container = styled.article`
   padding: 1rem;
   grid-template-columns: auto;
   background-color: #212529;
-  width: calc(50% * 0.84);
+  width: calc(100% * 0.84);
+
+  @media (min-width: 768px) {
+    width: calc(50% * 0.84);
+  }
 
   &:hover {
     background-color: #292e33;
@@ -26,5 +30,29 @@ export const Container = styled.article`
     text-align: center;
     border-bottom: 1px solid #292e33;
     padding: 0.35rem 0;
+  }
+`;
+
+export const Player = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem 1rem;
+  border-bottom: 1px solid #495057;
+
+  > div {
+    display: flex;
+    gap: 0.5rem;
+    > button {
+      padding: 0.2rem 0.5rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 0.375rem;
+      background-color: #16191d;
+
+      &:hover {
+        background-color: #495057;
+      }
+    }
   }
 `;
