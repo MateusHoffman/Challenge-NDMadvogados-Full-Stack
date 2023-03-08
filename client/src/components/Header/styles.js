@@ -35,18 +35,17 @@ export const DivLogo = styled.div`
 `;
 
 export const Nav = styled.nav`
-  /* border: 2px solid red; */
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.5rem;
 
   > a {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0;
-    padding: 0 1rem 0 1rem;
+    padding: 0 0.5rem 0 0.5rem;
     border: none;
     background: transparent;
     cursor: pointer;
