@@ -11,6 +11,10 @@ const api = {
       const { data } = await axios.get(`http://localhost:3002/api/players`);
       return data;
     },
+    async getAllTeamsWithPlayers() {
+      const { data } = await axios.get(`http://localhost:3002/api/teams/players`);
+      return data;
+    },
   },
   post: {
     async registerPlayer(body) {
@@ -36,10 +40,11 @@ const api = {
   },
   put: {
     async editPlayer(id, data) {
-      await axios.put(
+      const result = await axios.put(
         `http://localhost:3002/api/players/${id}`,
         data
       );
+      return result.data
     },
   },
 };
