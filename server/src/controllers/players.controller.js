@@ -27,8 +27,18 @@ const deletePlayer = async (req, res, next) => {
 	}
 }
 
+const editPlayer = async (req, res, next) => {
+	try {
+		const response = await playersService.editPlayer(req.params, req.body)
+		res.status(200).json(response)
+	} catch (error) {
+		next(error)
+	}
+}
+
 module.exports = {
   getAllPlayers,
 	registerPlayer,
 	deletePlayer,
+	editPlayer,
 };

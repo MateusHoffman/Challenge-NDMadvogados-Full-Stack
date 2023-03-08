@@ -30,8 +30,18 @@ const deletePlayer = async ({id}) => {
   return 'Successfully deleted'
 };
 
+const editPlayer = async ({id}, {name, age, team}) => {
+  const query1 = `
+  UPDATE jogador
+  SET nome = '${name}', idade = ${age}, time_id = ${team}
+  WHERE id = ${id};`;
+  await connection.query(query1);
+  return 'Successfully edited'
+};
+
 module.exports = {
   getAllPlayers,
   registerPlayer,
   deletePlayer,
+  editPlayer,
 };

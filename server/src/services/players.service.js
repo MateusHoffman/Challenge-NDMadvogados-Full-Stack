@@ -15,8 +15,14 @@ const deletePlayer = (body) => {
 	return response
 }
 
+const editPlayer = (params, body) => {
+	const response = playersModel.editPlayer(params, body)
+	return response
+}
+
 module.exports = {
 	getAllPlayers,
 	registerPlayer,
 	deletePlayer,
+	editPlayer,
 }
