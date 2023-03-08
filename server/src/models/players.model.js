@@ -11,9 +11,13 @@ const registerPlayer = async ({name, age, team}) => {
   const result1 = await connection.query(query1);
   if (result1.rows[0].count >= 5) return 'This team already has the maximum number of players.'
 
-  const query2 = `SELECT nome, idade, time_id FROM jogador`;
+  const query2 = `
+  SELECT nome, idade, time_id
+  FROM jogador
+  WHERE nome = '${name}'
+  `;
   const result2 = await connection.query(query2);
-  if (result2.rows.some(e => e.nome === name && e.idade === age && e.time_id === team)) return
+  if (result2.rows[0]) return 'Existing player'
 
   const query3 = `insert into jogador(nome,idade,time_id) values ('${name}',${age},${team})`;
   await connection.query(query3);

@@ -7,9 +7,13 @@ const getAllTeams = async () => {
 };
 
 const registerTeam = async ({name}) => {
-  const query1 = `SELECT nome FROM time`;
+  const query1 = `
+  SELECT nome
+  FROM TIME
+  WHERE nome = '${name}'
+  `;
   const result1 = await connection.query(query1);
-  if (result1.rows.some(e => e.nome === name)) return
+  if (result1.rows[0]) return 'Existing team'
 
   const query2 = `insert into time(nome) values ('${name}')`;
   await connection.query(query2);
