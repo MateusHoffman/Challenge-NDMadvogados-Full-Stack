@@ -23,7 +23,7 @@ export const SocialMedia = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 
-  > div {
+  > a {
     text-decoration: inherit;
     text-decoration-thickness: 4px;
     text-underline-offset: 2px;
@@ -32,12 +32,20 @@ export const SocialMedia = styled.div`
     width: 2.5rem;
     place-items: center;
     border-radius: 0.375rem;
-    color: var(--text-2);
 
     > img {
       display: block;
-      height: 1.25rem;
-      width: 1.25rem;
+      height: 2.35rem;
+      width: 2.35rem;
+
+
+      padding: 0 0.5rem 0 0.5rem;
+      cursor: pointer;
+      border-radius: 0.375rem;
+
+      &:hover {
+        background-color: #495057;
+      }
     }
   }
 `;
