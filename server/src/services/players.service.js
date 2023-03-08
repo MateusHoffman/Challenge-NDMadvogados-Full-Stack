@@ -5,6 +5,12 @@ const getAllPlayers = () => {
 	return response
 }
 
+const registerPlayer = (body) => {
+	const response = playersModel.registerPlayer(body)
+	return response
+}
+
 module.exports = {
 	getAllPlayers,
+	registerPlayer,
 }
