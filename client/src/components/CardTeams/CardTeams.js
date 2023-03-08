@@ -5,48 +5,45 @@ import api from '../../service/requests';
 import { globalContext } from '../../contexts/globalContext'
 import { useContext } from 'react';
 
-function CardTeams({ info: { team, teamPlayers } }) {
+function CardTeams({ arrPlayers }) {
   const navigate = useNavigate();
-  const { setPlayerInfo, setEditingPlayer } = useContext(globalContext)
+  const { teamsPlayers, setTeamsPlayers, setPlayerInfo, setEditingPlayer } = useContext(globalContext)
 
-  const handleDeletePlayer = async ({id, name}) => {
+  const handleDeletePlayer = async ({ id }) => {
+    const newTeamsPlayers = teamsPlayers.filter(f => f.id !== id)
     await api.delete.deletePlayer({id})
-    window.location.reload(false);
+    setTeamsPlayers(newTeamsPlayers)
   }
 
   const handleDeleteTeam = async (id) => {
     await api.delete.deleteTeam({id})
-    window.location.reload(false);
   }
 
-  const handleEditPlayer = ({ name, id, age }) => {
-    setPlayerInfo({id, name, team, age})
+  const handleEditPlayer = ({ id, nome, idade, time_id }) => {
+    setPlayerInfo({id, nome, idade, time_id})
     setEditingPlayer(true)
     navigate('/register/players');
-    // console.log(name, id);
-    // await api.put.editPlayer(id, {name, age, team})
-    // console.log(id);
   }
 
   return (
     <S.Container>
-      <h3>{team.name}</h3>
+      <h3>{arrPlayers[0].nome_do_time}</h3>
       <div>
         {
           [1,2,3,4,5].map((e, i) => (
-            <S.Player Key={i}>
+            <S.Player Key={e.toString()}>
               <div>
-                <p>{teamPlayers[i] ? teamPlayers[i].name : '-'}</p>
+                <p>{arrPlayers[i] ? arrPlayers[i].nome : '-'}</p>
               </div>
               <div>
-                <button onClick={() => handleDeletePlayer(teamPlayers[i])}>🗑</button>
-                <button onClick={() => handleEditPlayer(teamPlayers[i])}>🖌</button>
+                <button onClick={() => handleDeletePlayer(arrPlayers[i])}>🗑</button>
+                <button onClick={() => handleEditPlayer(arrPlayers[i])}>🖌</button>
               </div>
             </S.Player>
           ))
         }
       </div>
-      <S.DeleteTeam onClick={() => handleDeleteTeam(team.id)}>🗑</S.DeleteTeam>
+      <S.DeleteTeam onClick={() => handleDeleteTeam(arrPlayers[0].time_id)}>🗑</S.DeleteTeam>
     </S.Container>
   );
 }
