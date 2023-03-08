@@ -1,38 +1,31 @@
 import * as S from './styles';
+import { useContext, useEffect, useState } from 'react';
 
 import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
 import CardTeams from '../../components/CardTeams/CardTeams';
-import api from '../../service/requests';
-import { useEffect, useState } from 'react';
+// import api from '../../service/requests';
+import { globalContext } from '../../contexts/globalContext'
 
 function Home() {
-  const [completeTeams, setCompleteTeams] = useState([])
+  const { teamsPlayers } = useContext(globalContext)
+  const [organizedTeams, setOrganizedTeams] = useState([])
 
-  const organizedTeams = (teams, players) => {
-    const arrOrganizedTeams = []
-    teams.forEach(t => {
-      const teamPlayers = []
-      players.forEach(p => {
-        if (p.time_id === t.id) {
-          teamPlayers.push({ name: p.nome, id: p.id, age: p.idade })
-        }
+  const organizingTeams = () => {
+    const organized = []
+    if (teamsPlayers) {
+      teamsPlayers.forEach(e => {
+        const result = teamsPlayers.filter(f => f.nome_do_time === e.nome_do_time)
+        const exists = organized.some(s => s[0].nome_do_time === result[0].nome_do_time)
+        if (!exists) organized.push(result)
       })
-      arrOrganizedTeams.push({team: {name: t.nome, id: t.id}, teamPlayers})
-    })
-    setCompleteTeams(arrOrganizedTeams)
-    return arrOrganizedTeams
-  }
-
-  const requestApi = async () => {
-    const teams = await api.get.getAllTeams()
-    const players = await api.get.getAllPlayers()
-    organizedTeams(teams, players)
+    }
+    setOrganizedTeams(organized)
   }
 
   useEffect(() => {
-    requestApi()
-  }, [])
+    organizingTeams()
+  }, [teamsPlayers])
 
   return (
     <>
@@ -41,9 +34,9 @@ function Home() {
         <S.TitlePage>TEAMS</S.TitlePage>
         <S.SectionTeams>
           {
-            completeTeams.map((e, i) => (
-              <CardTeams key={e.team.id} info={e} />
-            ))
+            organizedTeams
+              .map((e, i) => (<CardTeams key={i} arrPlayers={e} />)
+            )
           }
         </S.SectionTeams>
       </S.MainContainer>
