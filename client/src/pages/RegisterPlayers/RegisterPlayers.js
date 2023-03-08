@@ -1,13 +1,15 @@
 import * as S from './styles';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
 import api from '../../service/requests';
+import { globalContext } from '../../contexts/globalContext'
 
 function RegisterPlayers() {
   const navigate = useNavigate();
+  const { playerInfo, editingPlayer } = useContext(globalContext)
 
   const [name, setName] = useState('')
   const [age, setAge] = useState('')
@@ -21,7 +23,11 @@ function RegisterPlayers() {
   }
 
   const handleSubmit = async() => {
-    await api.post.registerPlayer({name, age, team})
+    if (editingPlayer) {
+      await api.put.editPlayer(playerInfo.id, {name, age, team})
+    } else {
+      await api.post.registerPlayer({name, age, team})
+    }
     setName('')
     setAge('')
     navigate('/');
@@ -34,7 +40,12 @@ function RegisterPlayers() {
 
   useEffect(() => {
     requestApi()
-  }, [])
+    if (playerInfo) {
+      setName(playerInfo.name)
+      setAge(playerInfo.age)
+      setTeam(playerInfo.team)
+    }
+  }, [playerInfo])
 
   return (
     <>
