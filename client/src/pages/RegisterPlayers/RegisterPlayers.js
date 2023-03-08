@@ -9,7 +9,7 @@ import { globalContext } from '../../contexts/globalContext'
 
 function RegisterPlayers() {
   const navigate = useNavigate();
-  const { playerInfo, editingPlayer } = useContext(globalContext)
+  const { playerInfo, editingPlayer, setEditingPlayer, setTeamsPlayers, teamsPlayers } = useContext(globalContext)
 
   const [name, setName] = useState('')
   const [age, setAge] = useState('')
@@ -24,7 +24,9 @@ function RegisterPlayers() {
 
   const handleSubmit = async() => {
     if (editingPlayer) {
-      await api.put.editPlayer(playerInfo.id, {name, age, team})
+      const data = await api.put.editPlayer(playerInfo.id, {name, age, team})
+      setEditingPlayer(false)
+      setTeamsPlayers(data)
     } else {
       await api.post.registerPlayer({name, age, team})
     }
@@ -41,9 +43,9 @@ function RegisterPlayers() {
   useEffect(() => {
     requestApi()
     if (playerInfo) {
-      setName(playerInfo.name)
-      setAge(playerInfo.age)
-      setTeam(playerInfo.team)
+      setName(playerInfo.nome)
+      setAge(playerInfo.idade)
+      // setTeam(toString(playerInfo.time_id))
     }
   }, [playerInfo])
 
@@ -66,7 +68,13 @@ function RegisterPlayers() {
             <select name='team' onChange={(e) => handleChange(e)}>
               {
                 allTeams.map((e, i) => (
-                  <option key={i} value={e.id}>{e.nome}</option>
+                  <option
+                    key={i}
+                    value={e.id}
+                    selected={playerInfo.time_id === e.id ? true : false}
+                  >
+                    {e.nome}
+                  </option>
                 ))
               }
             </select>
