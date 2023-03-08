@@ -15,7 +15,7 @@ function Home() {
       const teamPlayers = []
       players.forEach(p => {
         if (p.time_id === t.id) {
-          teamPlayers.push(p.nome)
+          teamPlayers.push({ name: p.nome, id: p.id })
         }
       })
       arrOrganizedTeams.push({team: t.nome, teamPlayers})
