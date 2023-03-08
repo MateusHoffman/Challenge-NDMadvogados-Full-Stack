@@ -12,6 +12,15 @@ const getAllPlayers = async (req, res, next) => {
 const registerPlayer = async (req, res, next) => {
 	try {
 		const response = await playersService.registerPlayer(req.body)
+		res.status(201).json(response)
+	} catch (error) {
+		next(error)
+	}
+}
+
+const deletePlayer = async (req, res, next) => {
+	try {
+		const response = await playersService.deletePlayer(req.body)
 		res.status(200).json(response)
 	} catch (error) {
 		next(error)
@@ -21,4 +30,5 @@ const registerPlayer = async (req, res, next) => {
 module.exports = {
   getAllPlayers,
 	registerPlayer,
+	deletePlayer,
 };

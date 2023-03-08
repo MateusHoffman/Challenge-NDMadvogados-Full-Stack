@@ -10,7 +10,13 @@ const registerPlayer = (body) => {
 	return response
 }
 
+const deletePlayer = (body) => {
+	const response = playersModel.deletePlayer(body)
+	return response
+}
+
 module.exports = {
 	getAllPlayers,
 	registerPlayer,
+	deletePlayer,
 }

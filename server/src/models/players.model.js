@@ -24,7 +24,14 @@ const registerPlayer = async ({name, age, team}) => {
   return 'Player added successfully'
 };
 
+const deletePlayer = async ({id}) => {
+  const query1 = `DELETE FROM jogador WHERE id = ${id};`;
+  await connection.query(query1);
+  return 'Successfully deleted'
+};
+
 module.exports = {
   getAllPlayers,
   registerPlayer,
+  deletePlayer,
 };

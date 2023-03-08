@@ -5,5 +5,6 @@ const router = express.Router();
 
 router.get('/', playersController.getAllPlayers)
 router.post('/', playersController.registerPlayer)
+router.delete('/', playersController.deletePlayer)
 
 module.exports = router;
