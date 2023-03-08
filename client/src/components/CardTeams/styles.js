@@ -56,3 +56,16 @@ export const Player = styled.div`
     }
   }
 `;
+
+export const DeleteTeam = styled.button`
+  padding: 0.2rem 0.5rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  background-color: #16191d;
+
+  &:hover {
+    background-color: #495057;
+  }
+  position: absolute;
+`;

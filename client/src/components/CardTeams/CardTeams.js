@@ -4,8 +4,13 @@ import api from '../../service/requests';
 
 function CardTeams({ info: { team, teamPlayers } }) {
 
-  const handleDelete = async ({id, name}) => {
+  const handleDeletePlayer = async ({id, name}) => {
     await api.delete.deletePlayer({id})
+    window.location.reload(false);
+  }
+
+  const handleDeleteTeam = async (id) => {
+    await api.delete.deleteTeam({id})
     window.location.reload(false);
   }
 
@@ -16,7 +21,7 @@ function CardTeams({ info: { team, teamPlayers } }) {
 
   return (
     <S.Container>
-      <h3>{team}</h3>
+      <h3>{team.name}</h3>
       <div>
         {
           [1,2,3,4,5].map((e, i) => (
@@ -25,13 +30,14 @@ function CardTeams({ info: { team, teamPlayers } }) {
                 <p>{teamPlayers[i] ? teamPlayers[i].name : '-'}</p>
               </div>
               <div>
-                <button onClick={() => handleDelete(teamPlayers[i])}>🗑</button>
+                <button onClick={() => handleDeletePlayer(teamPlayers[i])}>🗑</button>
                 <button onClick={() => handleEdit(teamPlayers[i])}>🖌</button>
               </div>
             </S.Player>
           ))
         }
       </div>
+      <S.DeleteTeam onClick={() => handleDeleteTeam(team.id)}>🗑</S.DeleteTeam>
     </S.Container>
   );
 }
