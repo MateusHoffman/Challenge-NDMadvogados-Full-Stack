@@ -34,6 +34,14 @@ const api = {
       await axios.delete(`http://localhost:3002/api/teams/${id}`);
     },
   },
+  put: {
+    async editPlayer(id, data) {
+      await axios.put(
+        `http://localhost:3002/api/players/${id}`,
+        data
+      );
+    },
+  },
 };
 
 export default api;
