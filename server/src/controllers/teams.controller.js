@@ -20,7 +20,7 @@ const registerTeam = async (req, res, next) => {
 
 const deleteTeam = async (req, res, next) => {
 	try {
-		const response = await teamsService.deleteTeam(req.body)
+		const response = await teamsService.deleteTeam(req.params)
 		res.status(200).json(response)
 	} catch (error) {
 		next(error)
