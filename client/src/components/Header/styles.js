@@ -28,7 +28,7 @@ export const DivLogo = styled.div`
     background-color: #495057;
   }
 
-  > img {
+  > a > img {
     display: block;
     width: 2.25rem;
   }
