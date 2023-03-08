@@ -14,18 +14,21 @@ const api = {
   },
   post: {
     async registerPlayer(body) {
-      console.log(body);
       await axios.post(
         `http://localhost:3002/api/players`,
         body
       );
     },
     async registerTeam(body) {
-      console.log(body);
       await axios.post(
         `http://localhost:3002/api/teams`,
         body
       );
+    },
+  },
+  delete: {
+    async deletePlayer({id}) {
+      await axios.delete(`http://localhost:3002/api/players/${id}`);
     },
   },
 };
