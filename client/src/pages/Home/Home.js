@@ -15,7 +15,7 @@ function Home() {
       const teamPlayers = []
       players.forEach(p => {
         if (p.time_id === t.id) {
-          teamPlayers.push({ name: p.nome, id: p.id })
+          teamPlayers.push({ name: p.nome, id: p.id, age: p.idade })
         }
       })
       arrOrganizedTeams.push({team: {name: t.nome, id: t.id}, teamPlayers})
@@ -42,7 +42,7 @@ function Home() {
         <S.SectionTeams>
           {
             completeTeams.map((e, i) => (
-              <CardTeams key={i} info={e} />
+              <CardTeams key={e.team.id} info={e} />
             ))
           }
         </S.SectionTeams>
