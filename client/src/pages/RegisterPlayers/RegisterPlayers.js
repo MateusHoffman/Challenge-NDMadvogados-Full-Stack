@@ -9,7 +9,7 @@ import { globalContext } from '../../contexts/globalContext'
 
 function RegisterPlayers() {
   const navigate = useNavigate();
-  const { playerInfo, editingPlayer, setEditingPlayer, setTeamsPlayers, teamsPlayers } = useContext(globalContext)
+  const { playerInfo, editingPlayer, setEditingPlayer, setTeamsPlayers, setPlayerInfo } = useContext(globalContext)
 
   const [name, setName] = useState('')
   const [age, setAge] = useState('')
@@ -24,14 +24,14 @@ function RegisterPlayers() {
 
   const handleSubmit = async() => {
     if (editingPlayer) {
-      const data = await api.put.editPlayer(playerInfo.id, {name, age, team})
       setEditingPlayer(false)
+      const data = await api.put.editPlayer(playerInfo.id, {name, age, team})
       setTeamsPlayers(data)
+      setPlayerInfo({})
     } else {
-      await api.post.registerPlayer({name, age, team})
+      const data = await api.post.registerPlayer({name, age, team})
+      setTeamsPlayers(data)
     }
-    setName('')
-    setAge('')
     navigate('/');
   }
 
@@ -45,7 +45,7 @@ function RegisterPlayers() {
     if (playerInfo) {
       setName(playerInfo.nome)
       setAge(playerInfo.idade)
-      // setTeam(toString(playerInfo.time_id))
+      setTeam(playerInfo.time_id)
     }
   }, [playerInfo])
 
