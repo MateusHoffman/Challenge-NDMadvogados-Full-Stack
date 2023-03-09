@@ -16,7 +16,9 @@ function CardTeams({ arrPlayers }) {
   }
 
   const handleDeleteTeam = async (id) => {
+    const newTeamsPlayers = teamsPlayers.filter(f => f.time_id !== id)
     await api.delete.deleteTeam({id})
+    setTeamsPlayers(newTeamsPlayers)
   }
 
   const handleEditPlayer = ({ id, nome, idade, time_id }) => {
