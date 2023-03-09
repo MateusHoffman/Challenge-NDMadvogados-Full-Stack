@@ -30,7 +30,7 @@ function RegisterPlayers() {
       setPlayerInfo({})
     } else {
       const data = await api.post.registerPlayer({name, age, team})
-      setTeamsPlayers(data)
+      if (typeof(data) !== 'string') setTeamsPlayers(data)
     }
     navigate('/');
   }
