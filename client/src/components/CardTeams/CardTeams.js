@@ -33,7 +33,7 @@ function CardTeams({ arrPlayers }) {
       <div>
         {
           [1,2,3,4,5].map((e, i) => (
-            <S.Player Key={e.toString()}>
+            <S.Player Key={`${arrPlayers[0].nome_do_time} - ${i}`}>
               <div>
                 <p>{arrPlayers[i] ? arrPlayers[i].nome : '-'}</p>
               </div>
