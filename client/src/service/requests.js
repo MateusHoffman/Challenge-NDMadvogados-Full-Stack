@@ -18,10 +18,11 @@ const api = {
   },
   post: {
     async registerPlayer(body) {
-      await axios.post(
+      const result = await axios.post(
         `http://localhost:3002/api/players`,
         body
       );
+      return result.data
     },
     async registerTeam(body) {
       await axios.post(
