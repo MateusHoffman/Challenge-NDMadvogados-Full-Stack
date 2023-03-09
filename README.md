@@ -3,9 +3,7 @@
 ## Preview:
 
 <div align="center" margin="50px">
-	<img src="img/1.jpeg" width="32%" />
- 	<img src="img/2.jpeg" width="32%" />
- 	<img src="img/3.jpeg" width="32%" />
+	<img src="img/1.png" width="96%" />
 </div>
 
 ## Step by step for you to run the project:
