@@ -20,7 +20,7 @@ function Home() {
         if (!exists) organized.push(result)
       })
     }
-    setOrganizedTeams(organized)
+    setOrganizedTeams(organized.sort().reverse())
   }
 
   useEffect(() => {
