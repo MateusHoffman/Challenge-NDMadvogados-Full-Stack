@@ -4,7 +4,6 @@ import { useContext, useEffect, useState } from 'react';
 import Header from "../../components/Header/header";
 import Footer from "../../components/Footer/footer";
 import CardTeams from '../../components/CardTeams/CardTeams';
-// import api from '../../service/requests';
 import { globalContext } from '../../contexts/globalContext'
 
 function Home() {

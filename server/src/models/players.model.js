@@ -23,7 +23,6 @@ const registerPlayer = async ({name, age, team}) => {
   const query3 = `insert into jogador(nome,idade,time_id) values ('${name}',${age},${team})`;
   await connection.query(query3);
   return getAllTeamsWithPlayers()
-  // return 'Player added successfully'
 };
 
 const deletePlayer = async ({id}) => {
@@ -39,7 +38,6 @@ const editPlayer = async ({id}, {name, age, team}) => {
   WHERE id = ${id};`;
   await connection.query(query1);
   return getAllTeamsWithPlayers()
-  // return 'Successfully edited'
 };
 
 module.exports = {
